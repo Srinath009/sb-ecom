@@ -2,6 +2,7 @@ package com.ecommerce.project.controller;
 
 import com.ecommerce.project.entity.Category;
 import com.ecommerce.project.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +21,11 @@ public class CategoryController {
 
     @GetMapping("/public/categories")
     public ResponseEntity<List<Category>> getAllCategories() {
-        // Logic to retrieve all categories from the database
         return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
     }
 
     @PostMapping("/admin/createcategory")
-    public ResponseEntity<String> createCategory(@RequestBody Category category) {
+    public ResponseEntity<String> createCategory(@Valid @RequestBody Category category) {
         categoryService.create(category);
         return new ResponseEntity<>("Category created successfully", HttpStatus.CREATED);
     }
