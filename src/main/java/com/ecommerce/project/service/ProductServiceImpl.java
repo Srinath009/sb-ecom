@@ -1,7 +1,7 @@
 package com.ecommerce.project.service;
 
-import com.ecommerce.project.entity.Category;
-import com.ecommerce.project.entity.Product;
+import com.ecommerce.project.model.Category;
+import com.ecommerce.project.model.Product;
 import com.ecommerce.project.exception.APIException;
 import com.ecommerce.project.exception.ResourceNotFoundException;
 import com.ecommerce.project.payload.ProductDTO;
