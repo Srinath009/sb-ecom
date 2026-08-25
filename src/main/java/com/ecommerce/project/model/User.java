@@ -38,19 +38,20 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 255)
+    @Column(name = "password", length = 255)
     private String password;
 
-    public User(String password, String email, String userName) {
+    public User(String userName, String email, String password) {
+        this.userName = userName;
         this.password = password;
         this.email = email;
-        this.userName = userName;
     }
 
     @Getter
     @Setter
     @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     @ToString.Exclude
